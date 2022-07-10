@@ -17,6 +17,7 @@
 #include <QGuiApplication>
 #else
 #include <QApplication>
+#include <QGuiApplication>
 #endif
 
 #ifdef Q_OS_MACOS
@@ -46,7 +47,9 @@
 #include <QDateTime>
 #include <KDBusService>
 
-#include <japplicationqt.h>
+#include <QQuickStyle>
+
+// #include <japplicationqt.h>
 
 #define INDEX_URI "org.maui.index"
 
@@ -69,13 +72,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #else
     QApplication app(argc, argv);
 #endif
-    JApplicationQt japp;
-    japp.enableBackgroud(true);
+    // JApplicationQt japp;
+    // japp.enableBackgroud(true);
     bool backgroundStartUp = qEnvironmentVariableIsSet("BACKGROUNDSTARTUP");
     QApplication::setQuitLockEnabled(!backgroundStartUp);
-    QObject::connect(&japp, &JApplicationQt::resume, [&backgroundStartUp]() {
-        backgroundStartUp = false;
-    });
+    // QObject::connect(&japp, &JApplicationQt::resume, [&backgroundStartUp]() {
+    //     backgroundStartUp = false;
+    // });
     KLocalizedString::setApplicationDomain("filemanager");
     KLocalizedString::addDomainLocaleDir("filemanager", "/usr/share/local");
 
@@ -111,8 +114,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         paths = args;
     }
         
-    Index index(&japp);
+    Index index(&app);
     QQmlApplicationEngine engine;
+    engine.addImportPath("/home/liujun/jingos/usr/lib/x86_64-linux-gnu/qml");
+    engine.addImportPath("/home/liujun/jingos/jstyle/lib/x86_64-linux-gnu/qml");
+    
+    // engine.addPluginPath("/home/liujun/jingos/usr/lib/x86_64-linux-gnu/");
+    QStringList importPathList = engine.importPathList();
+    qDebug() << "importPathList:" << importPathList;
+    qDebug() << "pluginPathList:" << engine.pluginPathList();
+
+    qDebug() << "QQuickStyle::name(): " << QQuickStyle::name();
+    qDebug() << "QQuickStyle::path(): " << QQuickStyle::path();
+    qDebug() << "QQuickStyle::stylePathList(): " << QQuickStyle::stylePathList();
+    qDebug() << "QQuickStyle::availableStyles(): " << QQuickStyle::availableStyles();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(
         &engine,
@@ -127,11 +142,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     engine.rootContext()->setContextProperty("inx", &index);
-    engine.rootContext()->setContextProperty("japp", &japp);
+    engine.rootContext()->setContextProperty("japp", &app);
     engine.rootContext()->setContextProperty("realVisible", !backgroundStartUp);
-    QObject::connect(&japp, &JApplicationQt::resume, [&engine]() {
-        engine.rootContext()->setContextProperty("realVisible", true);
-    });
+    // QObject::connect(&japp, &JApplicationQt::resume, [&engine]() {
+    //     engine.rootContext()->setContextProperty("realVisible", true);
+    // });
     qmlRegisterSingletonType<ProcessModel>(INDEX_URI, 1, 0, "ProcessModel", [] (QQmlEngine *, QJSEngine *) -> QObject* {
         return ProcessModel::instance();
     });

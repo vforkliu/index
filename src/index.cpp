@@ -20,7 +20,7 @@ Index::Index(QObject *parent)
 {
 }
 
-Index::Index(JApplicationQt *japp)
+Index::Index(QGuiApplication *japp)
     : m_japp(japp)
 {
 }

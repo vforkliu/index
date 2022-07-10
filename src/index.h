@@ -9,20 +9,22 @@
 
 #include <QObject>
 #include <QStringList>
-#include <japplicationqt.h>
+// #include <japplicationqt.h>
+#include <QGuiApplication>
 
 class Index : public QObject
 {
     Q_OBJECT
 public:
     explicit Index(QObject *parent = nullptr);
-    Index(JApplicationQt *japp);
+    Index(QGuiApplication *japp);
 
     Q_INVOKABLE void openPaths(const QStringList &paths);
     Q_INVOKABLE void setEnableBackground(bool enable);
 
 private:
-    JApplicationQt *m_japp;
+    // JApplicationQt *m_japp;
+    QGuiApplication *m_japp;
 signals:
     void openPath(QStringList paths);
 

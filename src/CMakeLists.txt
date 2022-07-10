@@ -42,7 +42,18 @@ target_compile_definitions(index
 
 
 find_package(KF5DBusAddons REQUIRED)
-target_link_libraries(index MauiKit Qt5::Sql Qt5::Quick Qt5::Qml Qt5::Svg KF5::Archive KF5::CoreAddons KF5::I18n KF5::DBusAddons jappcoreqt)
+#  jappcoreqt
+target_link_libraries(index 
+    MauiKit 
+    Qt5::Sql 
+    Qt5::Quick 
+    Qt5::Qml 
+    Qt5::Svg 
+    Qt5::QuickControls2
+    KF5::Archive 
+    KF5::CoreAddons
+    KF5::I18n 
+    KF5::DBusAddons)
 
 #TODO: port to ecm_install_icons()
 if(UNIX AND NOT APPLE AND NOT ANDROID)
