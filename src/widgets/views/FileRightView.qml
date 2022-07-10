@@ -39,7 +39,7 @@ Rectangle {
         anchors.left: parent.left
         width: parent.width
         height: 78 * appScaleSize
-        color: "#00ff0000"
+        color:  "#00ff0000"
     }
 
     FileEditBarView {
@@ -101,6 +101,7 @@ Rectangle {
             acceptedButtons: Qt.LeftButton | Qt.RightButton
             propagateComposedEvents: true
             onClicked: {
+                console.info("onClicked")
                 if (mouse.button == Qt.RightButton) {
 
                     if (mouse.x <= 90
@@ -118,6 +119,7 @@ Rectangle {
                                                     mouse.x, mouse.y)
                             menuX = realMap.x
                             menuY = realMap.y
+                            console.info("currentBrowser:", currentBrowser)
                             currentBrowser.browserMenu.show()
                         }
                     } else {

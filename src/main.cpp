@@ -117,7 +117,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     Index index(&app);
     QQmlApplicationEngine engine;
     engine.addImportPath("/home/liujun/jingos/usr/lib/x86_64-linux-gnu/qml");
-    engine.addImportPath("/home/liujun/jingos/jstyle/lib/x86_64-linux-gnu/qml");
+//    engine.addImportPath("/home/liujun/jingos/jstyle/lib/x86_64-linux-gnu/qml");
     
     // engine.addPluginPath("/home/liujun/jingos/usr/lib/x86_64-linux-gnu/");
     QStringList importPathList = engine.importPathList();

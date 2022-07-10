@@ -28,7 +28,7 @@ Maui.Page
 
     background: Rectangle
     {
-        color: "#00000000"
+        color: "lightgreen" // "#00000000"
     }
 
     ListView
@@ -82,6 +82,7 @@ Maui.Page
 
             function show(path)//各个文件类型
             {
+                console.log("FilePreviwer show path:", path)
                 leftMenuData.addFileToRecents(path.toString());
 
                 control.isDir = model.isdir == "true"
@@ -113,6 +114,7 @@ Maui.Page
                 {
                     return
                 }
+                console.log("FilePreviwer show source:", source)
                 _delegate.loaderSource = source
                 previewTimer.start()
                 control.showInfo = source === "DefaultPreview.qml"

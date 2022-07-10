@@ -150,7 +150,7 @@ Kirigami.ApplicationWindow {
         property bool showHiddenFiles: false
         property bool showThumbnails: true
         property bool singleClick: Kirigami.Settings.isMobile ? true : Maui.Handy.singleClick
-        property bool previewFiles: Kirigami.Settings.isMobile
+        property bool previewFiles: true // Kirigami.Settings.isMobile
         property bool restoreSession: false
         property bool supportSplit: !Kirigami.Settings.isMobile
 
@@ -282,6 +282,7 @@ Kirigami.ApplicationWindow {
         leftMenuData.moveToTrash(urls)
     }
 
+    // mainView
     FileMainView
     {
         id: wholeScreen

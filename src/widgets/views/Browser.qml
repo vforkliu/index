@@ -255,6 +255,7 @@ Item {
                 }
 
                 onItemClicked: {
+                    console.log("onItemClicked")
                     const item = currentFMModel.get(index)
 
                     if (root.selectionMode) //编辑态下 选中操作
@@ -331,11 +332,16 @@ Item {
                 }
 
                 onItemDoubleClicked: {
+                    console.info("onItemDoubleClicked")
                     const item = currentFMModel.get(index)
-
+                    console.log("appSettings.singleClick:", appSettings.singleClick)
                     if (!appSettings.singleClick) {
-                        if (appSettings.previewFiles && item.isdir != "true"
-                                && !root.selectionMode) {
+
+                        console.info("appSettings.previewFiles:",appSettings.previewFiles)
+                        console.info("root.selectionMode:",root.selectionMode)
+//                        if (appSettings.previewFiles && item.isdir != "true" && !root.selectionMode)
+                        if (item.isdir != "true" && !root.selectionMode)
+                        {
                             _stackView.push(_previewerComponent)
                             return
                         }

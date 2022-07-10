@@ -57,7 +57,7 @@ Rectangle
             anchors.top: leftSpace.bottom
             width: parent.width
             height: 68 * appScaleSize
-            color: "#00000000"
+            color:  "#00000000"
 
 
             Text {
@@ -79,6 +79,7 @@ Rectangle
             }
         }
 
+        // Left Places
         LeftMenu {
             id: leftMenu
             width: indexRom.width
