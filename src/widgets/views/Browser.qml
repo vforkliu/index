@@ -262,10 +262,12 @@ Item {
                     {
                         addToSelection(item, index)
                     } else {
+                        console.log("appSettings.singleClick:",appSettings.singleClick)
                         if (appSettings.singleClick)
                         {
-                            if (appSettings.previewFiles && item.isdir != "true"
-                                    && !root.selectionMode) {
+                            // if (appSettings.previewFiles && item.isdir != "true" && !root.selectionMode) 
+                            if (item.isdir != "true" && !root.selectionMode) 
+                            {
                                 if (item.mime.indexOf("video") != -1) //视频 直接播放
                                 {
                                     root.imageIndex = index

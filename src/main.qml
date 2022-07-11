@@ -163,6 +163,9 @@ Kirigami.ApplicationWindow {
                                          "viewType": 1
                                      })]]
         property int lastTabIndex: 0
+        Component.onCompleted:{
+            settings.singleClick = true
+        }
     }
 
     Settings {
